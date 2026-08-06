@@ -31,14 +31,14 @@
 </head>
 <body class="flex items-center justify-center min-h-screen p-4" style="background: #0a0a0f;">
 
-    <!-- Background Glow Effects -->
+    <!-- Background Glow -->
     <div class="fixed inset-0 pointer-events-none z-0">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blood-600/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gold-500/5 rounded-full blur-3xl"></div>
         <div class="absolute bottom-1/3 left-0 w-[300px] h-[300px] bg-blood-500/5 rounded-full blur-3xl"></div>
     </div>
 
-    <!-- Blood Rain Decoration -->
+    <!-- Blood Rain -->
     <div id="bloodRain" class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <style>
             .blood-drop {
@@ -77,7 +77,7 @@
     <div class="relative z-10 w-full max-w-md">
         <!-- Logo -->
         <div class="text-center mb-8">
-            <a href="index.html" class="text-4xl font-black flex items-center justify-center gap-2">
+            <a href="index.html" class="text-4xl font-black flex items-center justify-center gap-2 no-underline">
                 <span class="text-blood-500">Kyuu</span>
                 <span class="text-gold-400">Api</span>
             </a>
@@ -89,17 +89,17 @@
             
             <!-- Tab Login/Register -->
             <div class="flex bg-black/40 rounded-2xl p-1 mb-6">
-                <button id="tab-login" onclick="switchTab('login')" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-blood-600 text-white shadow-lg shadow-blood-600/20">
+                <button id="tab-login" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-blood-600 text-white shadow-lg shadow-blood-600/20">
                     <i class="fa-solid fa-right-to-bracket mr-2"></i> Login
                 </button>
-                <button id="tab-register" onclick="switchTab('register')" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-gray-400 hover:text-white">
+                <button id="tab-register" class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-gray-400 hover:text-white">
                     <i class="fa-solid fa-user-plus mr-2"></i> Daftar
                 </button>
             </div>
 
-            <!-- ========== LOGIN FORM ========== -->
+            <!-- ===== LOGIN FORM ===== -->
             <div id="login-form">
-                <form onsubmit="handleLogin(event)" class="space-y-5">
+                <div class="space-y-5">
                     <div>
                         <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                             <i class="fa-regular fa-envelope mr-2 text-gold-400"></i> Email
@@ -111,7 +111,6 @@
                                 id="login-email" 
                                 placeholder="email@example.com" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
-                                required
                             >
                         </div>
                     </div>
@@ -127,28 +126,26 @@
                                 id="login-password" 
                                 placeholder="Minimal 6 karakter" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
-                                required
-                                minlength="6"
                             >
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-blood w-full text-sm py-3.5 rounded-xl font-bold flex items-center justify-center gap-2">
+                    <button id="btn-login" class="btn-blood w-full text-sm py-3.5 rounded-xl font-bold flex items-center justify-center gap-2">
                         <i class="fa-solid fa-right-to-bracket"></i> Masuk
                     </button>
                     
                     <p class="text-center text-xs text-gray-500 mt-4">
                         Belum punya akun? 
-                        <button type="button" onclick="switchTab('register')" class="text-gold-400 hover:text-gold-300 font-bold transition">
+                        <button id="goto-register" class="text-gold-400 hover:text-gold-300 font-bold transition">
                             Daftar di sini
                         </button>
                     </p>
-                </form>
+                </div>
             </div>
 
-            <!-- ========== REGISTER FORM ========== -->
+            <!-- ===== REGISTER FORM ===== -->
             <div id="register-form" class="hidden">
-                <form onsubmit="handleRegister(event)" class="space-y-4">
+                <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                             <i class="fa-regular fa-user mr-2 text-gold-400"></i> Nama Lengkap
@@ -160,7 +157,6 @@
                                 id="register-name" 
                                 placeholder="Nama kamu" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
-                                required
                             >
                         </div>
                     </div>
@@ -176,7 +172,6 @@
                                 id="register-email" 
                                 placeholder="email@example.com" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
-                                required
                             >
                         </div>
                     </div>
@@ -192,8 +187,6 @@
                                 id="register-password" 
                                 placeholder="Minimal 6 karakter" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
-                                required 
-                                minlength="6"
                             >
                         </div>
                     </div>
@@ -209,7 +202,6 @@
                                 id="register-userid" 
                                 placeholder="Contoh: kyuuxx" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
-                                required
                             >
                         </div>
                         <p class="text-[10px] text-gray-500 mt-1.5">
@@ -217,17 +209,17 @@
                         </p>
                     </div>
 
-                    <button type="submit" class="btn-gold w-full text-sm py-3.5 rounded-xl font-bold flex items-center justify-center gap-2">
+                    <button id="btn-register" class="btn-gold w-full text-sm py-3.5 rounded-xl font-bold flex items-center justify-center gap-2">
                         <i class="fa-solid fa-user-plus"></i> Daftar Sekarang
                     </button>
                     
                     <p class="text-center text-xs text-gray-500 mt-4">
                         Sudah punya akun? 
-                        <button type="button" onclick="switchTab('login')" class="text-blood-400 hover:text-blood-300 font-bold transition">
+                        <button id="goto-login" class="text-blood-400 hover:text-blood-300 font-bold transition">
                             Login di sini
                         </button>
                     </p>
-                </form>
+                </div>
             </div>
         </div>
 
@@ -238,159 +230,247 @@
     </div>
 
     <!-- ============================== -->
-    <!-- SCRIPT AUTH LOGIC -->
+    <!-- SCRIPT AUTH LOGIC (FIXED) -->
     <!-- ============================== -->
     <script>
-        const supabase = supabaseClient;
+        (function() {
+            'use strict';
 
-        // ===== SWITCH TAB =====
-        function switchTab(tab) {
+            console.log('🔐 Auth page loaded');
+
+            const supabase = window.supabaseClient;
+
+            // ===== DOM ELEMENTS =====
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
             const tabLogin = document.getElementById('tab-login');
             const tabRegister = document.getElementById('tab-register');
+            const gotoRegister = document.getElementById('goto-register');
+            const gotoLogin = document.getElementById('goto-login');
+            const btnLogin = document.getElementById('btn-login');
+            const btnRegister = document.getElementById('btn-register');
 
-            if (tab === 'login') {
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-                tabLogin.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-blood-600 text-white shadow-lg shadow-blood-600/20';
-                tabRegister.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-gray-400 hover:text-white';
-            } else {
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-                tabRegister.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-gold-600 text-white shadow-lg shadow-gold-600/20';
-                tabLogin.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-gray-400 hover:text-white';
-            }
-        }
-
-        // ===== LOGIN =====
-        async function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value;
-
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Memproses...';
-
-            try {
-                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-                if (error) {
-                    alert('❌ Login gagal: ' + error.message);
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    return;
-                }
-
-                if (data.session) {
-                    window.location.href = 'home.html';
-                }
-            } catch (err) {
-                alert('Terjadi kesalahan: ' + err.message);
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        }
-
-        // ===== REGISTER =====
-        async function handleRegister(e) {
-            e.preventDefault();
-            const fullName = document.getElementById('register-name').value.trim();
-            const email = document.getElementById('register-email').value.trim();
-            const password = document.getElementById('register-password').value;
-            const userId = document.getElementById('register-userid').value.trim();
-
-            if (!userId) {
-                alert('❌ Username harus diisi!');
-                return;
-            }
-
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mendaftar...';
-
-            try {
-                // Cek apakah user_id sudah ada
-                const { data: existing } = await supabase
-                    .from('profiles')
-                    .select('user_id')
-                    .eq('user_id', userId)
-                    .maybeSingle();
-
-                if (existing) {
-                    alert('❌ Username "' + userId + '" sudah digunakan! Silakan pilih username lain.');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    return;
-                }
-
-                // Register ke Supabase Auth
-                const { data, error } = await supabase.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        data: {
-                            full_name: fullName,
-                            username: userId
-                        }
-                    }
-                });
-
-                if (error) {
-                    alert('❌ Gagal mendaftar: ' + error.message);
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    return;
-                }
-
-                if (data.user) {
-                    // Profile akan otomatis dibuat oleh trigger di Supabase
-                    alert('✅ Pendaftaran berhasil! Silakan cek email untuk verifikasi (jika diperlukan).\n\nSekarang kamu bisa login.');
-                    
-                    // Switch ke login dan isi email
-                    switchTab('login');
-                    document.getElementById('login-email').value = email;
-                    document.getElementById('login-password').value = '';
-                }
-
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-
-            } catch (err) {
-                alert('Terjadi kesalahan: ' + err.message);
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        }
-
-        // ===== CEK SESSION =====
-        async function checkSession() {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) {
-                window.location.href = 'home.html';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', checkSession);
-
-        // ===== ENTER KEY SUPPORT =====
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const loginForm = document.getElementById('login-form');
-                const registerForm = document.getElementById('register-form');
+            // ===== SWITCH TAB =====
+            function switchTab(tab) {
+                console.log('🔄 Switching to:', tab);
                 
-                if (!loginForm.classList.contains('hidden')) {
-                    const submitBtn = loginForm.querySelector('button[type="submit"]');
-                    if (submitBtn) submitBtn.click();
-                } else if (!registerForm.classList.contains('hidden')) {
-                    const submitBtn = registerForm.querySelector('button[type="submit"]');
-                    if (submitBtn) submitBtn.click();
+                if (tab === 'login') {
+                    loginForm.classList.remove('hidden');
+                    registerForm.classList.add('hidden');
+                    tabLogin.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-blood-600 text-white shadow-lg shadow-blood-600/20';
+                    tabRegister.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-gray-400 hover:text-white';
+                } else {
+                    loginForm.classList.add('hidden');
+                    registerForm.classList.remove('hidden');
+                    tabRegister.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-gold-600 text-white shadow-lg shadow-gold-600/20';
+                    tabLogin.className = 'flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-gray-400 hover:text-white';
                 }
             }
-        });
+
+            // ===== EVENT LISTENERS =====
+            // Tab clicks
+            tabLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab('login');
+            });
+
+            tabRegister.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab('register');
+            });
+
+            gotoRegister.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab('register');
+            });
+
+            gotoLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab('login');
+            });
+
+            // ===== LOGIN =====
+            btnLogin.addEventListener('click', async function(e) {
+                e.preventDefault();
+                console.log('🔑 Login button clicked');
+
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+
+                if (!email || !password) {
+                    alert('❌ Email dan password harus diisi!');
+                    return;
+                }
+
+                const originalText = btnLogin.innerHTML;
+                btnLogin.disabled = true;
+                btnLogin.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Memproses...';
+
+                try {
+                    console.log('📧 Attempting login for:', email);
+                    
+                    const { data, error } = await supabase.auth.signInWithPassword({ 
+                        email, 
+                        password 
+                    });
+
+                    if (error) {
+                        console.error('❌ Login error:', error);
+                        alert('❌ Login gagal: ' + error.message);
+                        btnLogin.innerHTML = originalText;
+                        btnLogin.disabled = false;
+                        return;
+                    }
+
+                    if (data && data.session) {
+                        console.log('✅ Login successful!');
+                        window.location.href = 'home.html';
+                    } else {
+                        alert('❌ Login gagal: No session returned');
+                        btnLogin.innerHTML = originalText;
+                        btnLogin.disabled = false;
+                    }
+
+                } catch (err) {
+                    console.error('💥 Unexpected error:', err);
+                    alert('Terjadi kesalahan: ' + err.message);
+                    btnLogin.innerHTML = originalText;
+                    btnLogin.disabled = false;
+                }
+            });
+
+            // ===== REGISTER =====
+            btnRegister.addEventListener('click', async function(e) {
+                e.preventDefault();
+                console.log('📝 Register button clicked');
+
+                const fullName = document.getElementById('register-name').value.trim();
+                const email = document.getElementById('register-email').value.trim();
+                const password = document.getElementById('register-password').value;
+                const userId = document.getElementById('register-userid').value.trim();
+
+                // Validasi
+                if (!fullName) {
+                    alert('❌ Nama lengkap harus diisi!');
+                    return;
+                }
+                if (!email) {
+                    alert('❌ Email harus diisi!');
+                    return;
+                }
+                if (!password || password.length < 6) {
+                    alert('❌ Password minimal 6 karakter!');
+                    return;
+                }
+                if (!userId) {
+                    alert('❌ Username harus diisi!');
+                    return;
+                }
+
+                const originalText = btnRegister.innerHTML;
+                btnRegister.disabled = true;
+                btnRegister.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mendaftar...';
+
+                try {
+                    // Cek username unik
+                    console.log('🔍 Checking username:', userId);
+                    const { data: existing, error: checkError } = await supabase
+                        .from('profiles')
+                        .select('user_id')
+                        .eq('user_id', userId)
+                        .maybeSingle();
+
+                    if (checkError) {
+                        console.error('❌ Check username error:', checkError);
+                    }
+
+                    if (existing) {
+                        alert('❌ Username "' + userId + '" sudah digunakan! Silakan pilih username lain.');
+                        btnRegister.innerHTML = originalText;
+                        btnRegister.disabled = false;
+                        return;
+                    }
+
+                    // Register ke Supabase Auth
+                    console.log('📧 Registering user:', email);
+                    const { data, error } = await supabase.auth.signUp({
+                        email,
+                        password,
+                        options: {
+                            data: {
+                                full_name: fullName,
+                                username: userId
+                            }
+                        }
+                    });
+
+                    if (error) {
+                        console.error('❌ Register error:', error);
+                        alert('❌ Gagal mendaftar: ' + error.message);
+                        btnRegister.innerHTML = originalText;
+                        btnRegister.disabled = false;
+                        return;
+                    }
+
+                    if (data && data.user) {
+                        console.log('✅ Registration successful!');
+                        alert('✅ Pendaftaran berhasil!\n\nSilakan login menggunakan email dan password kamu.');
+                        
+                        // Switch ke login
+                        switchTab('login');
+                        document.getElementById('login-email').value = email;
+                        document.getElementById('login-password').value = '';
+                    }
+
+                    btnRegister.innerHTML = originalText;
+                    btnRegister.disabled = false;
+
+                } catch (err) {
+                    console.error('💥 Unexpected error:', err);
+                    alert('Terjadi kesalahan: ' + err.message);
+                    btnRegister.innerHTML = originalText;
+                    btnRegister.disabled = false;
+                }
+            });
+
+            // ===== ENTER KEY SUPPORT =====
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    if (!loginForm.classList.contains('hidden')) {
+                        btnLogin.click();
+                    } else if (!registerForm.classList.contains('hidden')) {
+                        btnRegister.click();
+                    }
+                }
+            });
+
+            // ===== CEK SESSION =====
+            async function checkSession() {
+                try {
+                    console.log('🔍 Checking session...');
+                    const { data: { session }, error } = await supabase.auth.getSession();
+                    
+                    if (error) {
+                        console.error('❌ Session check error:', error);
+                        return;
+                    }
+                    
+                    if (session) {
+                        console.log('✅ Session found, redirecting to home...');
+                        window.location.href = 'home.html';
+                    } else {
+                        console.log('ℹ️ No session found');
+                    }
+                } catch (err) {
+                    console.error('💥 Session check error:', err);
+                }
+            }
+
+            // ===== INIT =====
+            checkSession();
+            console.log('✅ Auth page ready');
+
+        })();
     </script>
 
 </body>
