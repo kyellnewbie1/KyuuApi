@@ -1,7 +1,7 @@
 // KyuuApi - Supabase Configuration
 window.CONFIG = {
-    SUPABASE_URL: "https://YOUR_PROJECT.supabase.co",
-    SUPABASE_ANON_KEY: "YOUR_ANON_KEY",
+    SUPABASE_URL: "https://pwrpciqxbpqyjqtmgiiv.supabase.co",
+    SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cnBjaXF4YnBxeWpxdG1naWl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NDczNjQsImV4cCI6MjEwMDAyMzM2NH0.Kv4Ww8r9UB1jOvicbNrBYD0UYEN7Min8x1FCDHCoOZ8",
     SITE_NAME: "KyuuApi",
     SITE_URL: "https://kyuuapi.eu.cc",
     DEFAULT_AVATAR: "https://via.placeholder.com/150",
