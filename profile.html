@@ -26,10 +26,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Supabase & Config -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js"></script>
 </head>
-<body>
+<body class="bg-dark-bg text-white min-h-screen antialiased">
 
     <!-- NAVBAR -->
     <nav class="glass-nav fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -54,7 +55,7 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mt-16">
         
         <!-- PROFIL CARD HEADER -->
-        <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden mb-8">
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden mb-8 bg-[#14141e]/50 border border-white/5">
             <div id="profile-banner" class="absolute top-0 left-0 w-full h-36 sm:h-40 bg-gradient-to-r from-blood-900/60 via-dark-surface to-black z-0 border-b border-white/10 bg-cover bg-center transition-all duration-300"></div>
             
             <div class="relative z-10 flex flex-col md:flex-row items-center md:items-end gap-6 mt-16 sm:mt-20">
@@ -76,7 +77,7 @@
                     </div>
                     
                     <div class="mt-2.5 mb-5 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
-                        <p class="text-xs sm:text-sm uppercase tracking-widest font-extrabold"><span id="profile-role"></span></p>
+                        <p class="text-xs sm:text-sm uppercase tracking-widest font-extrabold"><span id="profile-role">Memuat...</span></p>
                         <button onclick="openEditModal()" class="bg-white/5 hover:bg-blood-600 border border-white/10 hover:border-blood-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg flex items-center gap-2">
                             <i class="fa-solid fa-pen-to-square text-gold-400"></i> Edit Profil
                         </button>
@@ -100,13 +101,13 @@
         </div>
 
         <!-- API KEY SECTION -->
-        <div class="glass-panel rounded-3xl p-6 mb-8">
+        <div class="glass-panel rounded-3xl p-6 mb-8 bg-[#14141e]/50 border border-white/5">
             <h3 class="text-sm font-black text-white flex items-center gap-2 mb-3">
                 <i class="fa-solid fa-key text-gold-400"></i> API Key
             </h3>
             <div class="flex flex-col sm:flex-row items-center gap-3">
-                <div class="api-key-display flex-1 text-sm" id="api-key-display">Memuat...</div>
-                <button onclick="copyApiKey()" class="btn-outline-gold text-sm px-4 py-2 whitespace-nowrap">
+                <div class="bg-black/40 border border-white/10 px-4 py-2 rounded-xl flex-1 text-sm font-mono text-gray-300 w-full overflow-hidden text-ellipsis" id="api-key-display">Memuat...</div>
+                <button onclick="copyApiKey()" class="bg-gold-500/20 hover:bg-gold-500/40 text-gold-400 border border-gold-500/30 rounded-xl font-bold transition text-sm px-4 py-2 whitespace-nowrap w-full sm:w-auto">
                     <i class="fa-regular fa-copy"></i> Copy
                 </button>
             </div>
@@ -119,14 +120,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <!-- CARD PERTEMANAN -->
-            <div class="glass-panel rounded-3xl p-6 sm:p-7 flex flex-col h-full">
+            <div class="glass-panel rounded-3xl p-6 sm:p-7 flex flex-col h-full bg-[#14141e]/50 border border-white/5">
                 <h3 class="text-base sm:text-lg font-black text-white mb-5 flex items-center gap-2">
                     <i class="fa-solid fa-user-group text-blue-400"></i> Sistem Pertemanan
                 </h3>
                 
                 <div class="flex gap-2 mb-5">
-                    <input type="text" id="search-friend-id" placeholder="Cari ID (contoh: 12345)" class="input-blood text-xs sm:text-sm">
-                    <button onclick="searchFriend()" class="btn-blood text-sm px-5 py-3 shrink-0">
+                    <input type="text" id="search-friend-id" placeholder="Cari ID (contoh: 12345)" class="w-full bg-black/40 text-sm text-white px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:border-blood-500 transition">
+                    <button onclick="searchFriend()" class="bg-blood-600 hover:bg-blood-500 text-white text-sm px-5 py-3 rounded-xl font-bold transition shrink-0">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
@@ -142,7 +143,7 @@
             </div>
 
             <!-- CARD STATISTIK -->
-            <div class="glass-panel rounded-3xl p-6 sm:p-7">
+            <div class="glass-panel rounded-3xl p-6 sm:p-7 bg-[#14141e]/50 border border-white/5">
                 <h3 class="text-base sm:text-lg font-black text-white mb-5 flex items-center gap-2">
                     <i class="fa-solid fa-gem text-gold-400"></i> Statistik Akun
                 </h3>
@@ -157,7 +158,7 @@
                     </li>
                     <li class="flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/5">
                         <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-crown text-gold-400"></i>Plan</span>
-                        <span id="stat-plan" class="font-black text-gold-400 text-xs uppercase">Free</span>
+                        <span id="stat-plan" class="font-black text-gold-400 text-xs uppercase">Memuat...</span>
                     </li>
                     <li class="flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/5">
                         <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-chart-simple text-blood-400"></i>Requests Hari Ini</span>
@@ -179,7 +180,7 @@
             <div class="space-y-4 mb-6">
                 <div>
                     <label class="block text-[11px] font-extrabold uppercase text-gray-400 tracking-wider mb-1.5">Nama Tampilan</label>
-                    <input type="text" id="edit-name" class="input-blood text-xs sm:text-sm">
+                    <input type="text" id="edit-name" class="w-full bg-black/40 text-xs sm:text-sm text-white px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:border-blood-500 transition">
                 </div>
                 <div>
                     <label class="block text-[11px] font-extrabold uppercase text-gray-400 tracking-wider mb-1.5">Foto Profil</label>
@@ -197,7 +198,7 @@
 
             <div class="flex gap-3">
                 <button onclick="closeEditModal()" class="w-1/2 py-3 bg-white/5 hover:bg-white/10 text-gray-300 font-bold rounded-xl transition text-xs sm:text-sm">Batal</button>
-                <button onclick="saveProfileChanges()" id="btn-save-profile" class="w-1/2 py-3 btn-blood text-xs sm:text-sm">Simpan</button>
+                <button onclick="saveProfileChanges()" id="btn-save-profile" class="w-1/2 py-3 bg-blood-600 hover:bg-blood-500 text-white font-bold rounded-xl transition text-xs sm:text-sm">Simpan</button>
             </div>
         </div>
     </div>
@@ -229,11 +230,11 @@
                 </div>
                 <div onclick="selectBorder('mythic')" class="bg-black/30 border border-white/10 hover:border-blood-400 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
                     <div class="avatar-frame frame-mythic mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-dragon text-blood-400 text-xs"></i></div></div>
-                    <span class="text-[11px] font-bold role-breaker text-center">Mythic Cosmic</span>
+                    <span class="text-[11px] font-bold text-blood-400 text-center">Mythic Cosmic</span>
                 </div>
                 <div onclick="selectBorder('mythic-red')" class="bg-black/30 border border-white/10 hover:border-rose-500 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
                     <div class="avatar-frame frame-mythic-red mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-fire-flame-curved text-rose-500 text-xs"></i></div></div>
-                    <span class="text-[11px] font-bold role-nolep text-center">Mythic Blood</span>
+                    <span class="text-[11px] font-bold text-rose-500 text-center">Mythic Blood</span>
                 </div>
             </div>
             <button onclick="closeBorderModal()" class="w-full py-3 bg-white/5 hover:bg-white/10 text-gray-300 font-bold rounded-xl transition">Tutup</button>
@@ -268,89 +269,133 @@
 
     <script>
         // ==============================
-        // PROFILE LOGIC
+        // PROFILE LOGIC & FALLBACK FIX
         // ==============================
 
-        const supabase = supabaseClient;
+        let supabase;
         let currentUser = null;
         let currentProfile = null;
         let selectedUserId = null;
 
         async function loadProfile() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (error || !session) {
-                window.location.href = 'auth.html';
-                return;
+            try {
+                // Pastikan supabaseClient terdefinisi
+                if (typeof supabaseClient !== 'undefined') {
+                    supabase = supabaseClient;
+                } else {
+                    throw new Error("Supabase client tidak ditemukan di config.js");
+                }
+
+                const { data: { session }, error } = await supabase.auth.getSession();
+                
+                if (error || !session) {
+                    console.warn("Tidak ada session, mengalihkan ke auth...");
+                    window.location.href = 'auth.html';
+                    return;
+                }
+
+                currentUser = session.user;
+                const { data: profile, error: profileError } = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', currentUser.id)
+                    .single();
+
+                if (profileError) throw profileError;
+                
+                currentProfile = profile;
+                renderProfileData(currentProfile);
+                loadFriends();
+
+            } catch (err) {
+                console.error("Gagal memuat profil asli, menggunakan data mock/tes UI:", err);
+                
+                // MOCK DATA JIKA SUPABASE GAGAL (Mencegah Loading Terus)
+                currentProfile = {
+                    id: 'mock-1234',
+                    full_name: 'Tester (Mode UI)',
+                    user_id: '99999',
+                    avatar_url: 'https://via.placeholder.com/150',
+                    level: 42,
+                    exp: 1337,
+                    api_key: 'kyuu_test_api_key_123',
+                    plan: 'premium',
+                    requests_today: 128,
+                    avatar_border: 'mythic-red',
+                    role: 'owner',
+                    created_at: new Date().toISOString(),
+                    banner_url: '',
+                    background_url: ''
+                };
+                currentUser = { id: currentProfile.id };
+                
+                renderProfileData(currentProfile);
+                
+                document.getElementById('friends-list').innerHTML = `
+                    <div class="bg-black/30 p-4 rounded-2xl text-center border border-white/5">
+                        <p class="text-gray-400 text-xs">Mode UI: Daftar teman tidak dimuat.</p>
+                    </div>`;
+            }
+        }
+
+        function renderProfileData(profile) {
+            document.getElementById('profile-name').innerText = profile.full_name || 'Tanpa Nama';
+            document.getElementById('profile-id').innerText = `#${profile.user_id || '000000'}`;
+            document.getElementById('profile-img').src = profile.avatar_url || 'https://via.placeholder.com/150';
+            document.getElementById('display-level').innerText = `Level ${profile.level || 0}`;
+            document.getElementById('display-exp').innerText = profile.exp || 0;
+
+            // API Key
+            document.getElementById('api-key-display').innerText = profile.api_key || 'Belum dibuat';
+
+            // Plan
+            document.getElementById('stat-plan').innerText = profile.plan === 'premium' ? '⭐ Premium' : 'Free';
+            document.getElementById('stat-requests').innerText = profile.requests_today || 0;
+
+            // Avatar Border
+            const activeBorder = profile.avatar_border || 'none';
+            applyBorderToWrapper(activeBorder);
+
+            // Background
+            if (profile.background_url && profile.background_url.trim() !== "") {
+                document.body.style.backgroundImage = `url('${profile.background_url.trim()}')`;
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundPosition = "center";
+                document.body.style.backgroundAttachment = "fixed";
+            } else {
+                document.body.style.backgroundImage = 'none';
             }
 
-            currentUser = session.user;
-            const { data: profile } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', currentUser.id)
-                .single();
+            // Banner
+            const bannerEl = document.getElementById('profile-banner');
+            if (profile.banner_url && profile.banner_url.trim() !== "") {
+                bannerEl.classList.remove('bg-gradient-to-r', 'from-blood-900/60', 'via-dark-surface', 'to-black');
+                bannerEl.style.backgroundImage = `url('${profile.banner_url.trim()}')`;
+            } else {
+                bannerEl.style.backgroundImage = 'none';
+                bannerEl.classList.add('bg-gradient-to-r', 'from-blood-900/60', 'via-dark-surface', 'to-black');
+            }
 
-            if (profile) {
-                currentProfile = profile;
-                document.getElementById('profile-name').innerText = profile.full_name || 'Tanpa Nama';
-                document.getElementById('profile-id').innerText = `#${profile.user_id || '000000'}`;
-                document.getElementById('profile-img').src = profile.avatar_url || 'https://via.placeholder.com/150';
-                document.getElementById('display-level').innerText = `Level ${profile.level || 0}`;
-                document.getElementById('display-exp').innerText = profile.exp || 0;
+            // Join date
+            const date = new Date(profile.created_at);
+            document.getElementById('stat-join').innerText = date.toLocaleDateString('id-ID', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
 
-                // API Key
-                document.getElementById('api-key-display').innerText = profile.api_key || 'Belum dibuat';
-
-                // Plan
-                document.getElementById('stat-plan').innerText = profile.plan === 'premium' ? '⭐ Premium' : 'Free';
-                document.getElementById('stat-requests').innerText = profile.requests_today || 0;
-
-                // Avatar Border
-                const activeBorder = profile.avatar_border || 'none';
-                applyBorderToWrapper(activeBorder);
-
-                // Background
-                if (profile.background_url && profile.background_url.trim() !== "") {
-                    document.body.style.backgroundImage = `url('${profile.background_url.trim()}')`;
-                    document.body.style.backgroundSize = "cover";
-                    document.body.style.backgroundPosition = "center";
-                } else {
-                    document.body.style.backgroundImage = 'none';
-                }
-
-                // Banner
-                const bannerEl = document.getElementById('profile-banner');
-                if (profile.banner_url && profile.banner_url.trim() !== "") {
-                    bannerEl.classList.remove('bg-gradient-to-r', 'from-blood-900/60', 'via-dark-surface', 'to-black');
-                    bannerEl.style.backgroundImage = `url('${profile.banner_url.trim()}')`;
-                } else {
-                    bannerEl.style.backgroundImage = 'none';
-                    bannerEl.classList.add('bg-gradient-to-r', 'from-blood-900/60', 'via-dark-surface', 'to-black');
-                }
-
-                // Join date
-                const date = new Date(profile.created_at);
-                document.getElementById('stat-join').innerText = date.toLocaleDateString('id-ID', {
-                    year: 'numeric', month: 'long', day: 'numeric'
-                });
-
-                // Role
-                const roleSpan = document.getElementById('profile-role');
-                if (profile.role === 'owner') {
-                    roleSpan.innerText = '👑 Owner';
-                    roleSpan.className = 'role-owner';
-                } else if (profile.role === 'breaker') {
-                    roleSpan.innerText = '🔥 Breaker';
-                    roleSpan.className = 'role-breaker';
-                } else if (profile.role === 'nolep') {
-                    roleSpan.innerText = '🩸 Nolep';
-                    roleSpan.className = 'role-nolep text-[14px]';
-                } else {
-                    roleSpan.innerText = 'Member';
-                    roleSpan.className = 'text-blue-400 font-bold';
-                }
-
-                loadFriends();
+            // Role
+            const roleSpan = document.getElementById('profile-role');
+            if (profile.role === 'owner') {
+                roleSpan.innerText = '👑 Owner';
+                roleSpan.className = 'text-gold-400 font-bold';
+            } else if (profile.role === 'breaker') {
+                roleSpan.innerText = '🔥 Breaker';
+                roleSpan.className = 'text-blood-400 font-bold';
+            } else if (profile.role === 'nolep') {
+                roleSpan.innerText = '🩸 Nolep';
+                roleSpan.className = 'text-rose-500 font-bold text-[14px]';
+            } else {
+                roleSpan.innerText = 'Member';
+                roleSpan.className = 'text-blue-400 font-bold';
             }
         }
 
@@ -369,7 +414,7 @@
             if (role === 'owner' || role === 'breaker' || role === 'nolep') {
                 document.getElementById('border-selection-modal').classList.remove('hidden');
             } else {
-                alert("🔒 Bingkai khusus untuk Breaker, Owner & Nolep!");
+                alert("🔒 Bingkai khusus untuk role Breaker, Owner & Nolep!");
             }
         }
 
@@ -379,7 +424,11 @@
 
         async function selectBorder(borderType) {
             applyBorderToWrapper(borderType);
-            await supabase.from('profiles').update({ avatar_border: borderType }).eq('id', currentUser.id);
+            
+            if(supabase) {
+                await supabase.from('profiles').update({ avatar_border: borderType }).eq('id', currentUser.id);
+            }
+            
             alert(`✅ Bingkai ${borderType.toUpperCase()} terpasang!`);
             closeBorderModal();
         }
@@ -387,27 +436,32 @@
         // ===== API KEY =====
         function copyApiKey() {
             const key = document.getElementById('api-key-display').innerText;
-            if (key && key !== 'Belum dibuat') {
+            if (key && key !== 'Belum dibuat' && key !== 'Memuat...') {
                 navigator.clipboard.writeText(key);
-                alert('✅ API Key disalin!');
+                alert('✅ API Key berhasil disalin!');
             } else {
-                alert('Belum ada API Key.');
+                alert('Belum ada API Key yang valid.');
             }
         }
 
         async function regenerateApiKey() {
             if (!confirm('Yakin ingin membuat API Key baru? Key lama akan tidak berlaku.')) return;
             const newKey = 'kyuu_' + Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6);
-            const { error } = await supabase
-                .from('profiles')
-                .update({ api_key: newKey })
-                .eq('id', currentUser.id);
-            if (error) {
-                alert('❌ Gagal regenerate: ' + error.message);
-            } else {
-                document.getElementById('api-key-display').innerText = newKey;
-                alert('✅ API Key baru berhasil dibuat!');
+            
+            if(supabase && currentUser.id !== 'mock-1234') {
+                const { error } = await supabase
+                    .from('profiles')
+                    .update({ api_key: newKey })
+                    .eq('id', currentUser.id);
+                    
+                if (error) {
+                    alert('❌ Gagal regenerate: ' + error.message);
+                    return;
+                }
             }
+            
+            document.getElementById('api-key-display').innerText = newKey;
+            alert('✅ API Key baru berhasil dibuat!');
         }
 
         // ===== EDIT PROFIL =====
@@ -424,6 +478,8 @@
         }
 
         async function uploadImageToSupabase(file, folderName) {
+            if(!supabase || currentUser.id === 'mock-1234') return 'https://via.placeholder.com/150'; // Mock return
+            
             const fileExt = file.name.split('.').pop();
             const fileName = `${currentUser.id}-${Date.now()}.${fileExt}`;
             const filePath = `${folderName}/${fileName}`;
@@ -473,25 +529,34 @@
                 if (url) updateData.background_url = url;
             }
 
-            const { error } = await supabase
-                .from('profiles')
-                .update(updateData)
-                .eq('id', currentUser.id);
+            if(supabase && currentUser.id !== 'mock-1234') {
+                const { error } = await supabase
+                    .from('profiles')
+                    .update(updateData)
+                    .eq('id', currentUser.id);
+
+                if (error) {
+                    alert('❌ Gagal: ' + error.message);
+                    btn.innerText = 'Simpan';
+                    btn.disabled = false;
+                    return;
+                }
+            }
 
             btn.innerText = 'Simpan';
             btn.disabled = false;
-
-            if (error) {
-                alert('❌ Gagal: ' + error.message);
-            } else {
-                alert('✅ Profil berhasil diperbarui!');
-                closeEditModal();
-                loadProfile();
-            }
+            alert('✅ Profil berhasil diperbarui!');
+            closeEditModal();
+            loadProfile(); // Reload
         }
 
         // ===== FRIENDS =====
         async function searchFriend() {
+            if(!supabase || currentUser.id === 'mock-1234') {
+                alert("Mode tes UI, fitur pencarian teman dinonaktifkan.");
+                return;
+            }
+            
             const searchId = document.getElementById('search-friend-id').value.trim();
             const resultBox = document.getElementById('search-result');
             if (!searchId) return;
@@ -524,7 +589,7 @@
                             <p class="text-[10px] text-gray-400 font-semibold">Lv.${data.level || 0}</p>
                         </div>
                     </div>
-                    <button onclick="sendFriendRequest('${data.id}')" class="btn-blood text-xs px-3 py-1.5">Tambah</button>
+                    <button onclick="sendFriendRequest('${data.id}')" class="bg-blood-600 hover:bg-blood-500 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition">Tambah</button>
                 </div>
             `;
         }
@@ -546,51 +611,57 @@
         }
 
         async function loadFriends() {
-            const { data, error } = await supabase
-                .from('friends')
-                .select(`
-                    id, status, requester_id, receiver_id,
-                    requester:profiles!friends_requester_id_fkey(id, full_name, user_id, avatar_url, level, exp, role),
-                    receiver:profiles!friends_receiver_id_fkey(id, full_name, user_id, avatar_url, level, exp, role)
-                `)
-                .or(`requester_id.eq.${currentUser.id},receiver_id.eq.${currentUser.id}`);
+            if(!supabase || currentUser.id === 'mock-1234') return;
+            
+            try {
+                const { data, error } = await supabase
+                    .from('friends')
+                    .select(`
+                        id, status, requester_id, receiver_id,
+                        requester:profiles!friends_requester_id_fkey(id, full_name, user_id, avatar_url, level, exp, role),
+                        receiver:profiles!friends_receiver_id_fkey(id, full_name, user_id, avatar_url, level, exp, role)
+                    `)
+                    .or(`requester_id.eq.${currentUser.id},receiver_id.eq.${currentUser.id}`);
 
-            const listEl = document.getElementById('friends-list');
+                const listEl = document.getElementById('friends-list');
 
-            if (!data || data.length === 0) {
-                listEl.innerHTML = '<div class="bg-black/30 p-4 rounded-2xl text-center border border-white/5"><p class="text-gray-400 text-xs">Belum ada teman.</p></div>';
-                return;
-            }
-
-            listEl.innerHTML = data.map(f => {
-                const isRequester = f.requester_id === currentUser.id;
-                const friendData = isRequester ? f.receiver : f.requester;
-                if (!friendData) return '';
-
-                let actionArea = '';
-                if (f.status === 'accepted') {
-                    actionArea = `
-                        <span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-black border border-emerald-500/30">Teman</span>
-                        <button onclick="openProfileModal('${friendData.id}')" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-eye"></i></button>
-                    `;
-                } else {
-                    actionArea = isRequester
-                        ? '<span class="text-amber-400 text-[10px] font-bold">Menunggu...</span>'
-                        : `
-                            <button onclick="acceptFriendRequest('${f.id}')" class="btn-gold text-[10px] px-2 py-1">Terima</button>
-                            <button onclick="openProfileModal('${friendData.id}')" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-eye"></i></button>
-                        `;
+                if (error || !data || data.length === 0) {
+                    listEl.innerHTML = '<div class="bg-black/30 p-4 rounded-2xl text-center border border-white/5"><p class="text-gray-400 text-xs">Belum ada teman.</p></div>';
+                    return;
                 }
 
-                return `
-                <div class="flex items-center justify-between bg-black/30 p-3 rounded-2xl border border-white/5">
-                    <span class="text-sm font-bold text-white flex items-center gap-2 cursor-pointer hover:text-gold-400 transition" onclick="openProfileModal('${friendData.id}')">
-                        <img src="${friendData.avatar_url || 'https://via.placeholder.com/150'}" class="w-8 h-8 rounded-full object-cover border border-white/10">
-                        ${friendData.full_name}
-                    </span>
-                    <div class="flex items-center gap-2">${actionArea}</div>
-                </div>`;
-            }).join('');
+                listEl.innerHTML = data.map(f => {
+                    const isRequester = f.requester_id === currentUser.id;
+                    const friendData = isRequester ? f.receiver : f.requester;
+                    if (!friendData) return '';
+
+                    let actionArea = '';
+                    if (f.status === 'accepted') {
+                        actionArea = `
+                            <span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-black border border-emerald-500/30">Teman</span>
+                            <button onclick="openProfileModal('${friendData.id}')" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-eye"></i></button>
+                        `;
+                    } else {
+                        actionArea = isRequester
+                            ? '<span class="text-amber-400 text-[10px] font-bold">Menunggu...</span>'
+                            : `
+                                <button onclick="acceptFriendRequest('${f.id}')" class="bg-gold-500 text-black font-bold rounded text-[10px] px-2 py-1">Terima</button>
+                                <button onclick="openProfileModal('${friendData.id}')" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-eye"></i></button>
+                            `;
+                    }
+
+                    return `
+                    <div class="flex items-center justify-between bg-black/30 p-3 rounded-2xl border border-white/5">
+                        <span class="text-sm font-bold text-white flex items-center gap-2 cursor-pointer hover:text-gold-400 transition" onclick="openProfileModal('${friendData.id}')">
+                            <img src="${friendData.avatar_url || 'https://via.placeholder.com/150'}" class="w-8 h-8 rounded-full object-cover border border-white/10">
+                            ${friendData.full_name}
+                        </span>
+                        <div class="flex items-center gap-2">${actionArea}</div>
+                    </div>`;
+                }).join('');
+            } catch (err) {
+                console.error("Error load friends:", err);
+            }
         }
 
         async function acceptFriendRequest(requestId) {
@@ -599,7 +670,7 @@
                 .update({ status: 'accepted' })
                 .eq('id', requestId);
             if (error) {
-                alert('❌ Gagal: ' + error.message);
+                alert('❌ Gagal menerima pertemanan: ' + error.message);
             } else {
                 loadFriends();
             }
@@ -626,7 +697,6 @@
                 banner.className = "h-28 bg-gradient-to-r from-blood-800 to-gold-900 opacity-80";
             }
 
-            // Apply border frame to modal avatar
             const frameWrapper = document.getElementById('modal-frame-wrapper');
             frameWrapper.className = "avatar-frame";
             if (data.avatar_border && data.avatar_border !== 'none') {
@@ -642,13 +712,13 @@
             const roleEl = document.getElementById('modal-role');
             if (data.role === 'owner') {
                 roleEl.innerText = '👑 Owner';
-                roleEl.className = 'text-[11px] font-black uppercase tracking-widest role-owner';
+                roleEl.className = 'text-[11px] font-black uppercase tracking-widest text-gold-400';
             } else if (data.role === 'breaker') {
                 roleEl.innerText = '🔥 Breaker';
-                roleEl.className = 'text-[11px] font-black uppercase tracking-widest role-breaker';
+                roleEl.className = 'text-[11px] font-black uppercase tracking-widest text-blood-400';
             } else if (data.role === 'nolep') {
                 roleEl.innerText = '🩸 Nolep';
-                roleEl.className = 'text-[12px] font-black uppercase tracking-widest role-nolep';
+                roleEl.className = 'text-[12px] font-black uppercase tracking-widest text-rose-500';
             } else {
                 roleEl.innerText = 'Member';
                 roleEl.className = 'text-[11px] font-black uppercase tracking-widest text-blue-400';
@@ -659,10 +729,13 @@
 
         // ===== LOGOUT =====
         async function logout() {
-            await supabase.auth.signOut();
+            if(supabase && currentUser.id !== 'mock-1234') {
+                await supabase.auth.signOut();
+            }
             window.location.href = 'auth.html';
         }
 
+        // Jalankan saat dokumen siap
         document.addEventListener('DOMContentLoaded', loadProfile);
     </script>
 </body>

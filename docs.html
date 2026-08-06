@@ -543,3 +543,48 @@ $response = curl_exec($curl);
 $data = json_decode($response, true);
 print_r($data);
 ?>`;
+                    break;
+            }
+            
+            document.getElementById('code-display').innerText = code;
+        }
+
+        function copyEndpoint(id) {
+            const ep = endpoints.find(e => e.id === id);
+            if (ep) {
+                const url = `https://kyuuapi.eu.cc/api/v1${ep.path}`;
+                navigator.clipboard.writeText(url);
+                alert('Endpoint URL berhasil disalin!');
+            }
+        }
+
+        function setTestApiKey() {
+            const key = document.getElementById('test-api-key').value;
+            if (key) {
+                testApiKey = key;
+                alert('API Key berhasil dipasang untuk testing!');
+            }
+        }
+
+        async function logout() {
+            if (typeof supabaseClient !== 'undefined') {
+                await supabaseClient.auth.signOut();
+            } else if (typeof supabase !== 'undefined') {
+                await supabase.auth.signOut();
+            }
+            window.location.href = 'auth.html';
+        }
+
+        // Initialize ketika HTML selesai dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            endpoints = ENDPOINTS_DATA;
+            renderEndpoints(endpoints);
+            
+            // Filter Events
+            document.getElementById('search-endpoint').addEventListener('input', filterEndpoints);
+            document.getElementById('filter-method').addEventListener('change', filterEndpoints);
+            document.getElementById('filter-category').addEventListener('change', filterEndpoints);
+        });
+    </script>
+</body>
+</html>
