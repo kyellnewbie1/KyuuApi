@@ -60,13 +60,8 @@
             
             <div class="relative z-10 flex flex-col md:flex-row items-center md:items-end gap-6 mt-16 sm:mt-20">
                 <!-- AVATAR -->
-                <div class="relative group cursor-pointer shrink-0" onclick="handleAvatarClick()" title="Klik untuk ganti bingkai">
-                    <div id="avatar-frame-wrapper" class="avatar-frame">
-                        <img id="profile-img" src="https://via.placeholder.com/150" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-[#0a0a0f] object-cover bg-dark-card shadow-2xl transition duration-300 group-hover:scale-105">
-                    </div>
-                    <div class="absolute bottom-1 right-1 bg-blood-600 text-white text-xs font-bold p-2 rounded-full shadow-lg border border-white/20 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    </div>
+                <div class="relative shrink-0">
+                    <img id="profile-img" src="https://via.placeholder.com/150" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-[#0a0a0f] object-cover bg-dark-card shadow-2xl">
                 </div>
 
                 <!-- USER INFO -->
@@ -76,25 +71,11 @@
                         <span id="profile-id" class="bg-blood-900/40 border border-blood-500/30 px-2.5 py-0.5 rounded-lg text-xs text-blood-300 font-mono font-bold">#--</span>
                     </div>
                     
-                    <div class="mt-2.5 mb-5 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
+                    <div class="mt-2.5 mb-2 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
                         <p class="text-xs sm:text-sm uppercase tracking-widest font-extrabold"><span id="profile-role">Memuat...</span></p>
                         <button onclick="openEditModal()" class="bg-white/5 hover:bg-blood-600 border border-white/10 hover:border-blood-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg flex items-center gap-2">
                             <i class="fa-solid fa-pen-to-square text-gold-400"></i> Edit Profil
                         </button>
-                        <button onclick="regenerateApiKey()" class="bg-white/5 hover:bg-gold-600/20 border border-white/10 hover:border-gold-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-rotate text-gold-400"></i> Regenerate API Key
-                        </button>
-                    </div>
-                    
-                    <!-- EXP LEVEL BAR -->
-                    <div class="bg-black/40 p-4 rounded-2xl border border-white/5 max-w-md mx-auto md:mx-0 backdrop-blur-md shadow-inner">
-                        <div class="flex justify-between text-xs font-bold mb-2">
-                            <span class="text-gold-300 uppercase tracking-widest" id="display-level">Level --</span>
-                            <span class="text-emerald-400 font-extrabold"><span id="display-exp">0</span> EXP</span>
-                        </div>
-                        <div class="w-full bg-dark-card rounded-full h-2.5 overflow-hidden border border-white/5">
-                            <div class="rgb-exp-bar h-full rounded-full w-full shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -112,40 +93,15 @@
                 </button>
             </div>
             <p class="text-[10px] text-gray-500 mt-2">
-                <i class="fa-solid fa-circle-info mr-1"></i> Gunakan API Key ini untuk autentikasi setiap request ke KyuuApi
+                <i class="fa-solid fa-shield-halved mr-1"></i> API Key ini permanen dan digunakan untuk autentikasi setiap request ke KyuuApi.
             </p>
         </div>
 
-        <!-- GRID PERTEMANAN & STATISTIK -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <!-- CARD PERTEMANAN -->
-            <div class="glass-panel rounded-3xl p-6 sm:p-7 flex flex-col h-full bg-[#14141e]/50 border border-white/5">
-                <h3 class="text-base sm:text-lg font-black text-white mb-5 flex items-center gap-2">
-                    <i class="fa-solid fa-user-group text-blue-400"></i> Sistem Pertemanan
-                </h3>
-                
-                <div class="flex gap-2 mb-5">
-                    <input type="text" id="search-friend-id" placeholder="Cari ID (contoh: 12345)" class="w-full bg-black/40 text-sm text-white px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:border-blood-500 transition">
-                    <button onclick="searchFriend()" class="bg-blood-600 hover:bg-blood-500 text-white text-sm px-5 py-3 rounded-xl font-bold transition shrink-0">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-
-                <div id="search-result" class="hidden bg-blood-950/30 border border-blood-500/30 p-4 rounded-2xl mb-5 transition"></div>
-
-                <div class="w-full h-px bg-white/5 mb-5"></div>
-
-                <h4 class="text-[11px] font-extrabold text-gray-400 uppercase tracking-widest mb-3">Daftar Teman</h4>
-                <div id="friends-list" class="space-y-2.5 flex-1 overflow-y-auto pr-1 max-h-64 custom-scrollbar">
-                    <div class="text-center py-6"><div class="w-7 h-7 border-2 border-blood-500/30 border-t-gold-500 rounded-full animate-spin mx-auto"></div></div>
-                </div>
-            </div>
-
-            <!-- CARD STATISTIK -->
+        <!-- CARD STATISTIK -->
+        <div class="max-w-2xl mx-auto">
             <div class="glass-panel rounded-3xl p-6 sm:p-7 bg-[#14141e]/50 border border-white/5">
                 <h3 class="text-base sm:text-lg font-black text-white mb-5 flex items-center gap-2">
-                    <i class="fa-solid fa-gem text-gold-400"></i> Statistik Akun
+                    <i class="fa-solid fa-chart-pie text-gold-400"></i> Statistik Akun
                 </h3>
                 <ul class="text-xs sm:text-sm text-gray-300 space-y-3.5" id="stat-list">
                     <li class="flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/5">
@@ -153,21 +109,21 @@
                         <span id="stat-join" class="font-extrabold text-white">-</span>
                     </li>
                     <li class="flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/5">
-                        <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i>Status</span>
-                        <span class="font-black text-emerald-400 tracking-wider uppercase text-xs">Aktif</span>
+                        <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-shield-check text-emerald-400"></i>Status</span>
+                        <span class="font-black text-emerald-400 tracking-wider uppercase text-xs"><i class="fa-solid fa-circle-check mr-1"></i> Aktif</span>
                     </li>
                     <li class="flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/5">
                         <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-crown text-gold-400"></i>Plan</span>
                         <span id="stat-plan" class="font-black text-gold-400 text-xs uppercase">Memuat...</span>
                     </li>
                     <li class="flex justify-between items-center bg-black/30 p-4 rounded-2xl border border-white/5">
-                        <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-chart-simple text-blood-400"></i>Requests Hari Ini</span>
+                        <span class="font-bold text-gray-400 flex items-center gap-2.5"><i class="fa-solid fa-server text-blood-400"></i>Requests Hari Ini</span>
                         <span id="stat-requests" class="font-black text-white">0</span>
                     </li>
                 </ul>
             </div>
-
         </div>
+
     </main>
 
     <!-- MODAL EDIT PROFIL -->
@@ -190,10 +146,6 @@
                     <label class="block text-[11px] font-extrabold uppercase text-gray-400 tracking-wider mb-1.5">Banner Atas</label>
                     <input type="file" id="edit-banner-file" accept="image/*" class="w-full bg-black/40 text-xs text-white px-3.5 py-2.5 rounded-xl border border-white/10 focus:outline-none focus:border-blood-500 transition file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blood-600 file:text-white hover:file:bg-blood-500 cursor-pointer">
                 </div>
-                <div>
-                    <label class="block text-[11px] font-extrabold uppercase text-gray-400 tracking-wider mb-1.5">Background</label>
-                    <input type="file" id="edit-background-file" accept="image/*" class="w-full bg-black/40 text-xs text-white px-3.5 py-2.5 rounded-xl border border-white/10 focus:outline-none focus:border-blood-500 transition file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blood-600 file:text-white hover:file:bg-blood-500 cursor-pointer">
-                </div>
             </div>
 
             <div class="flex gap-3">
@@ -203,83 +155,13 @@
         </div>
     </div>
 
-    <!-- MODAL PILIH BINGKAI -->
-    <div id="border-selection-modal" class="fixed inset-0 bg-black/85 flex items-center justify-center z-[110] hidden backdrop-blur-md px-4">
-        <div class="glass-panel rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-blood-500/20 bg-[#0a0a0f] p-6 sm:p-7">
-            <h3 class="text-lg font-black text-white mb-1.5 flex items-center gap-2">
-                <i class="fa-solid fa-circle-nodes text-gold-400"></i> Pilih Bingkai Profil
-            </h3>
-            <p class="text-xs text-gray-400 mb-5 font-medium">Khusus role Breaker, Owner, & Nolep</p>
-            
-            <div class="grid grid-cols-2 gap-3.5 mb-6 max-h-80 overflow-y-auto pr-1 custom-scrollbar">
-                <div onclick="selectBorder('none')" class="bg-black/30 border border-white/10 hover:border-blood-500 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
-                    <div class="w-14 h-14 rounded-full bg-dark-card mb-2 border-2 border-dashed border-gray-600"></div>
-                    <span class="text-xs font-bold text-gray-300">Default</span>
-                </div>
-                <div onclick="selectBorder('common')" class="bg-black/30 border border-white/10 hover:border-gray-300 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
-                    <div class="avatar-frame frame-common mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-shield-cat text-gray-400 text-xs"></i></div></div>
-                    <span class="text-xs font-bold text-gray-300">Common</span>
-                </div>
-                <div onclick="selectBorder('rare')" class="bg-black/30 border border-white/10 hover:border-cyan-400 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
-                    <div class="avatar-frame frame-rare mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-bolt text-cyan-400 text-xs"></i></div></div>
-                    <span class="text-xs font-bold text-cyan-400">Rare</span>
-                </div>
-                <div onclick="selectBorder('legendary')" class="bg-black/30 border border-white/10 hover:border-amber-400 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
-                    <div class="avatar-frame frame-legendary mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-crown text-amber-400 text-xs"></i></div></div>
-                    <span class="text-xs font-bold text-amber-400">Legendary ✨</span>
-                </div>
-                <div onclick="selectBorder('mythic')" class="bg-black/30 border border-white/10 hover:border-blood-400 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
-                    <div class="avatar-frame frame-mythic mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-dragon text-blood-400 text-xs"></i></div></div>
-                    <span class="text-[11px] font-bold text-blood-400 text-center">Mythic Cosmic</span>
-                </div>
-                <div onclick="selectBorder('mythic-red')" class="bg-black/30 border border-white/10 hover:border-rose-500 p-4 rounded-2xl cursor-pointer flex flex-col items-center justify-center transition">
-                    <div class="avatar-frame frame-mythic-red mb-2"><div class="w-12 h-12 rounded-full bg-dark-card flex items-center justify-center"><i class="fa-solid fa-fire-flame-curved text-rose-500 text-xs"></i></div></div>
-                    <span class="text-[11px] font-bold text-rose-500 text-center">Mythic Blood</span>
-                </div>
-            </div>
-            <button onclick="closeBorderModal()" class="w-full py-3 bg-white/5 hover:bg-white/10 text-gray-300 font-bold rounded-xl transition">Tutup</button>
-        </div>
-    </div>
-
-    <!-- MODAL PROFIL PUBLIK -->
-    <div id="public-profile-modal" class="fixed inset-0 bg-black/85 flex items-center justify-center z-[120] hidden backdrop-blur-md px-4">
-        <div class="glass-panel rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl relative border border-blood-500/20 bg-[#0a0a0f]">
-            <div id="modal-banner" class="h-28 bg-cover bg-center opacity-80 bg-gradient-to-r from-blood-800 to-gold-900"></div>
-            <div class="px-6 pb-7 relative -mt-14 text-center">
-                <div id="modal-frame-wrapper" class="avatar-frame mx-auto mb-3">
-                    <img id="modal-avatar" src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full border-4 border-[#0a0a0f] object-cover bg-dark-card shadow-2xl">
-                </div>
-                <h3 id="modal-name" class="text-xl font-black text-white"></h3>
-                <p class="text-xs text-gray-400 mb-1 font-mono">ID: <span id="modal-id"></span></p>
-                <p class="text-xs font-bold mb-5 uppercase tracking-widest" id="modal-role"></p>
-                <div class="flex justify-center gap-3 mb-6">
-                    <div class="bg-black/40 px-4 py-3 rounded-2xl border border-white/5 w-1/2">
-                        <span class="block text-[10px] text-gray-400 uppercase tracking-wider font-bold">Level</span>
-                        <span id="modal-level" class="text-lg font-black text-gold-300"></span>
-                    </div>
-                    <div class="bg-black/40 px-4 py-3 rounded-2xl border border-white/5 w-1/2">
-                        <span class="block text-[10px] text-gray-400 uppercase tracking-wider font-bold">EXP</span>
-                        <span id="modal-exp" class="text-lg font-black text-emerald-400"></span>
-                    </div>
-                </div>
-                <button onclick="document.getElementById('public-profile-modal').classList.add('hidden')" class="w-full py-3 bg-white/5 hover:bg-blood-600/80 border border-white/10 text-white font-bold rounded-xl transition">Tutup</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // ==============================
-        // PROFILE LOGIC & FALLBACK FIX
-        // ==============================
-
         let supabase;
         let currentUser = null;
         let currentProfile = null;
-        let selectedUserId = null;
 
         async function loadProfile() {
             try {
-                // Pastikan supabaseClient terdefinisi
                 if (typeof supabaseClient !== 'undefined') {
                     supabase = supabaseClient;
                 } else {
@@ -305,36 +187,23 @@
                 
                 currentProfile = profile;
                 renderProfileData(currentProfile);
-                loadFriends();
 
             } catch (err) {
-                console.error("Gagal memuat profil asli, menggunakan data mock/tes UI:", err);
-                
-                // MOCK DATA JIKA SUPABASE GAGAL (Mencegah Loading Terus)
+                console.error("Gagal memuat profil, menggunakan data mock/tes UI:", err);
                 currentProfile = {
                     id: 'mock-1234',
                     full_name: 'Tester (Mode UI)',
                     user_id: '99999',
                     avatar_url: 'https://via.placeholder.com/150',
-                    level: 42,
-                    exp: 1337,
                     api_key: 'kyuu_test_api_key_123',
                     plan: 'premium',
                     requests_today: 128,
-                    avatar_border: 'mythic-red',
                     role: 'owner',
                     created_at: new Date().toISOString(),
-                    banner_url: '',
-                    background_url: ''
+                    banner_url: ''
                 };
                 currentUser = { id: currentProfile.id };
-                
                 renderProfileData(currentProfile);
-                
-                document.getElementById('friends-list').innerHTML = `
-                    <div class="bg-black/30 p-4 rounded-2xl text-center border border-white/5">
-                        <p class="text-gray-400 text-xs">Mode UI: Daftar teman tidak dimuat.</p>
-                    </div>`;
             }
         }
 
@@ -342,29 +211,30 @@
             document.getElementById('profile-name').innerText = profile.full_name || 'Tanpa Nama';
             document.getElementById('profile-id').innerText = `#${profile.user_id || '000000'}`;
             document.getElementById('profile-img').src = profile.avatar_url || 'https://via.placeholder.com/150';
-            document.getElementById('display-level').innerText = `Level ${profile.level || 0}`;
-            document.getElementById('display-exp').innerText = profile.exp || 0;
 
-            // API Key
-            document.getElementById('api-key-display').innerText = profile.api_key || 'Belum dibuat';
-
-            // Plan
-            document.getElementById('stat-plan').innerText = profile.plan === 'premium' ? '⭐ Premium' : 'Free';
-            document.getElementById('stat-requests').innerText = profile.requests_today || 0;
-
-            // Avatar Border
-            const activeBorder = profile.avatar_border || 'none';
-            applyBorderToWrapper(activeBorder);
-
-            // Background
-            if (profile.background_url && profile.background_url.trim() !== "") {
-                document.body.style.backgroundImage = `url('${profile.background_url.trim()}')`;
-                document.body.style.backgroundSize = "cover";
-                document.body.style.backgroundPosition = "center";
-                document.body.style.backgroundAttachment = "fixed";
-            } else {
-                document.body.style.backgroundImage = 'none';
+            // Auto-Generate / Assign API Key Permanen
+            let currentApiKey = profile.api_key;
+            if (!currentApiKey || currentApiKey.trim() === '' || currentApiKey === 'Belum dibuat') {
+                // Generate format awalan kyuu_{random}
+                currentApiKey = 'kyuu_' + Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6);
+                
+                // Simpan ke database jika bukan mock data
+                if (supabase && currentUser.id !== 'mock-1234') {
+                    supabase.from('profiles')
+                        .update({ api_key: currentApiKey })
+                        .eq('id', currentUser.id)
+                        .then(({ error }) => {
+                            if(error) console.error("Gagal menyimpan API Key baru", error);
+                        });
+                }
             }
+            document.getElementById('api-key-display').innerText = currentApiKey;
+
+            // Plan Info dengan Icon
+            document.getElementById('stat-plan').innerHTML = profile.plan === 'premium' ? 
+                '<i class="fa-solid fa-star text-gold-400 mr-1"></i> Premium' : 
+                '<i class="fa-solid fa-user text-gray-400 mr-1"></i> Free';
+            document.getElementById('stat-requests').innerText = profile.requests_today || 0;
 
             // Banner
             const bannerEl = document.getElementById('profile-banner');
@@ -382,86 +252,30 @@
                 year: 'numeric', month: 'short', day: 'numeric'
             });
 
-            // Role
+            // Role dengan FontAwesome Icons (Premium Look)
             const roleSpan = document.getElementById('profile-role');
             if (profile.role === 'owner') {
-                roleSpan.innerText = '👑 Owner';
+                roleSpan.innerHTML = '<i class="fa-solid fa-crown mr-1"></i> Owner';
                 roleSpan.className = 'text-gold-400 font-bold';
             } else if (profile.role === 'breaker') {
-                roleSpan.innerText = '🔥 Breaker';
+                roleSpan.innerHTML = '<i class="fa-solid fa-fire mr-1"></i> Breaker';
                 roleSpan.className = 'text-blood-400 font-bold';
             } else if (profile.role === 'nolep') {
-                roleSpan.innerText = '🩸 Nolep';
+                roleSpan.innerHTML = '<i class="fa-solid fa-droplet mr-1"></i> Nolep';
                 roleSpan.className = 'text-rose-500 font-bold text-[14px]';
             } else {
-                roleSpan.innerText = 'Member';
+                roleSpan.innerHTML = '<i class="fa-solid fa-user mr-1"></i> Member';
                 roleSpan.className = 'text-blue-400 font-bold';
             }
-        }
-
-        // ===== AVATAR FRAME =====
-        function applyBorderToWrapper(borderType) {
-            const wrapper = document.getElementById('avatar-frame-wrapper');
-            wrapper.className = "avatar-frame";
-            if (borderType && borderType !== 'none') {
-                wrapper.classList.add(`frame-${borderType}`);
-            }
-        }
-
-        function handleAvatarClick() {
-            if (!currentProfile) return;
-            const role = (currentProfile.role || '').toLowerCase();
-            if (role === 'owner' || role === 'breaker' || role === 'nolep') {
-                document.getElementById('border-selection-modal').classList.remove('hidden');
-            } else {
-                alert("🔒 Bingkai khusus untuk role Breaker, Owner & Nolep!");
-            }
-        }
-
-        function closeBorderModal() {
-            document.getElementById('border-selection-modal').classList.add('hidden');
-        }
-
-        async function selectBorder(borderType) {
-            applyBorderToWrapper(borderType);
-            
-            if(supabase) {
-                await supabase.from('profiles').update({ avatar_border: borderType }).eq('id', currentUser.id);
-            }
-            
-            alert(`✅ Bingkai ${borderType.toUpperCase()} terpasang!`);
-            closeBorderModal();
         }
 
         // ===== API KEY =====
         function copyApiKey() {
             const key = document.getElementById('api-key-display').innerText;
-            if (key && key !== 'Belum dibuat' && key !== 'Memuat...') {
+            if (key && key !== 'Memuat...') {
                 navigator.clipboard.writeText(key);
-                alert('✅ API Key berhasil disalin!');
-            } else {
-                alert('Belum ada API Key yang valid.');
+                alert('API Key berhasil disalin!');
             }
-        }
-
-        async function regenerateApiKey() {
-            if (!confirm('Yakin ingin membuat API Key baru? Key lama akan tidak berlaku.')) return;
-            const newKey = 'kyuu_' + Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6);
-            
-            if(supabase && currentUser.id !== 'mock-1234') {
-                const { error } = await supabase
-                    .from('profiles')
-                    .update({ api_key: newKey })
-                    .eq('id', currentUser.id);
-                    
-                if (error) {
-                    alert('❌ Gagal regenerate: ' + error.message);
-                    return;
-                }
-            }
-            
-            document.getElementById('api-key-display').innerText = newKey;
-            alert('✅ API Key baru berhasil dibuat!');
         }
 
         // ===== EDIT PROFIL =====
@@ -469,7 +283,6 @@
             document.getElementById('edit-name').value = currentProfile?.full_name || '';
             document.getElementById('edit-avatar-file').value = '';
             document.getElementById('edit-banner-file').value = '';
-            document.getElementById('edit-background-file').value = '';
             document.getElementById('edit-profile-modal').classList.remove('hidden');
         }
 
@@ -478,7 +291,7 @@
         }
 
         async function uploadImageToSupabase(file, folderName) {
-            if(!supabase || currentUser.id === 'mock-1234') return 'https://via.placeholder.com/150'; // Mock return
+            if(!supabase || currentUser.id === 'mock-1234') return 'https://via.placeholder.com/150';
             
             const fileExt = file.name.split('.').pop();
             const fileName = `${currentUser.id}-${Date.now()}.${fileExt}`;
@@ -488,11 +301,7 @@
                 .from('user_content')
                 .upload(filePath, file, { upsert: true });
 
-            if (uploadError) {
-                console.error("Upload error:", uploadError);
-                return null;
-            }
-
+            if (uploadError) return null;
             const { data } = supabase.storage.from('user_content').getPublicUrl(filePath);
             return data.publicUrl;
         }
@@ -505,7 +314,6 @@
             const name = document.getElementById('edit-name').value.trim();
             const avatarFile = document.getElementById('edit-avatar-file').files[0];
             const bannerFile = document.getElementById('edit-banner-file').files[0];
-            const backgroundFile = document.getElementById('edit-background-file').files[0];
 
             if (!name) {
                 alert('Nama tidak boleh kosong!');
@@ -524,10 +332,6 @@
                 const url = await uploadImageToSupabase(bannerFile, 'banners');
                 if (url) updateData.banner_url = url;
             }
-            if (backgroundFile) {
-                const url = await uploadImageToSupabase(backgroundFile, 'backgrounds');
-                if (url) updateData.background_url = url;
-            }
 
             if(supabase && currentUser.id !== 'mock-1234') {
                 const { error } = await supabase
@@ -536,7 +340,7 @@
                     .eq('id', currentUser.id);
 
                 if (error) {
-                    alert('❌ Gagal: ' + error.message);
+                    alert('Gagal: ' + error.message);
                     btn.innerText = 'Simpan';
                     btn.disabled = false;
                     return;
@@ -545,186 +349,8 @@
 
             btn.innerText = 'Simpan';
             btn.disabled = false;
-            alert('✅ Profil berhasil diperbarui!');
             closeEditModal();
-            loadProfile(); // Reload
-        }
-
-        // ===== FRIENDS =====
-        async function searchFriend() {
-            if(!supabase || currentUser.id === 'mock-1234') {
-                alert("Mode tes UI, fitur pencarian teman dinonaktifkan.");
-                return;
-            }
-            
-            const searchId = document.getElementById('search-friend-id').value.trim();
-            const resultBox = document.getElementById('search-result');
-            if (!searchId) return;
-
-            resultBox.classList.remove('hidden');
-            resultBox.innerHTML = '<p class="text-xs text-gray-400 animate-pulse">Mencari...</p>';
-
-            const { data, error } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('user_id', searchId)
-                .single();
-
-            if (error || !data) {
-                resultBox.innerHTML = '<p class="text-xs font-bold text-blood-400">❌ User tidak ditemukan.</p>';
-                return;
-            }
-
-            if (data.id === currentUser.id) {
-                resultBox.innerHTML = '<p class="text-xs font-bold text-gold-400">Itu ID kamu sendiri!</p>';
-                return;
-            }
-
-            resultBox.innerHTML = `
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <img src="${data.avatar_url || 'https://via.placeholder.com/150'}" class="w-10 h-10 rounded-full border border-blood-500 object-cover">
-                        <div>
-                            <p class="text-sm font-bold text-white">${data.full_name}</p>
-                            <p class="text-[10px] text-gray-400 font-semibold">Lv.${data.level || 0}</p>
-                        </div>
-                    </div>
-                    <button onclick="sendFriendRequest('${data.id}')" class="bg-blood-600 hover:bg-blood-500 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition">Tambah</button>
-                </div>
-            `;
-        }
-
-        async function sendFriendRequest(targetId) {
-            const { error } = await supabase.from('friends').insert({
-                requester_id: currentUser.id,
-                receiver_id: targetId,
-                status: 'pending'
-            });
-
-            if (error) {
-                alert('❌ Gagal: ' + error.message);
-            } else {
-                alert('✅ Request terkirim!');
-                document.getElementById('search-result').classList.add('hidden');
-                document.getElementById('search-friend-id').value = '';
-            }
-        }
-
-        async function loadFriends() {
-            if(!supabase || currentUser.id === 'mock-1234') return;
-            
-            try {
-                const { data, error } = await supabase
-                    .from('friends')
-                    .select(`
-                        id, status, requester_id, receiver_id,
-                        requester:profiles!friends_requester_id_fkey(id, full_name, user_id, avatar_url, level, exp, role),
-                        receiver:profiles!friends_receiver_id_fkey(id, full_name, user_id, avatar_url, level, exp, role)
-                    `)
-                    .or(`requester_id.eq.${currentUser.id},receiver_id.eq.${currentUser.id}`);
-
-                const listEl = document.getElementById('friends-list');
-
-                if (error || !data || data.length === 0) {
-                    listEl.innerHTML = '<div class="bg-black/30 p-4 rounded-2xl text-center border border-white/5"><p class="text-gray-400 text-xs">Belum ada teman.</p></div>';
-                    return;
-                }
-
-                listEl.innerHTML = data.map(f => {
-                    const isRequester = f.requester_id === currentUser.id;
-                    const friendData = isRequester ? f.receiver : f.requester;
-                    if (!friendData) return '';
-
-                    let actionArea = '';
-                    if (f.status === 'accepted') {
-                        actionArea = `
-                            <span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-black border border-emerald-500/30">Teman</span>
-                            <button onclick="openProfileModal('${friendData.id}')" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-eye"></i></button>
-                        `;
-                    } else {
-                        actionArea = isRequester
-                            ? '<span class="text-amber-400 text-[10px] font-bold">Menunggu...</span>'
-                            : `
-                                <button onclick="acceptFriendRequest('${f.id}')" class="bg-gold-500 text-black font-bold rounded text-[10px] px-2 py-1">Terima</button>
-                                <button onclick="openProfileModal('${friendData.id}')" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-eye"></i></button>
-                            `;
-                    }
-
-                    return `
-                    <div class="flex items-center justify-between bg-black/30 p-3 rounded-2xl border border-white/5">
-                        <span class="text-sm font-bold text-white flex items-center gap-2 cursor-pointer hover:text-gold-400 transition" onclick="openProfileModal('${friendData.id}')">
-                            <img src="${friendData.avatar_url || 'https://via.placeholder.com/150'}" class="w-8 h-8 rounded-full object-cover border border-white/10">
-                            ${friendData.full_name}
-                        </span>
-                        <div class="flex items-center gap-2">${actionArea}</div>
-                    </div>`;
-                }).join('');
-            } catch (err) {
-                console.error("Error load friends:", err);
-            }
-        }
-
-        async function acceptFriendRequest(requestId) {
-            const { error } = await supabase
-                .from('friends')
-                .update({ status: 'accepted' })
-                .eq('id', requestId);
-            if (error) {
-                alert('❌ Gagal menerima pertemanan: ' + error.message);
-            } else {
-                loadFriends();
-            }
-        }
-
-        // ===== PUBLIC PROFILE =====
-        async function openProfileModal(userId) {
-            selectedUserId = userId;
-            const { data } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', userId)
-                .single();
-            if (!data) return;
-
-            const modal = document.getElementById('public-profile-modal');
-            const banner = document.getElementById('modal-banner');
-            
-            if (data.banner_url && data.banner_url.trim() !== "") {
-                banner.style.backgroundImage = `url('${data.banner_url.trim()}')`;
-                banner.className = "h-28 bg-cover bg-center opacity-80";
-            } else {
-                banner.style.backgroundImage = 'none';
-                banner.className = "h-28 bg-gradient-to-r from-blood-800 to-gold-900 opacity-80";
-            }
-
-            const frameWrapper = document.getElementById('modal-frame-wrapper');
-            frameWrapper.className = "avatar-frame";
-            if (data.avatar_border && data.avatar_border !== 'none') {
-                frameWrapper.classList.add(`frame-${data.avatar_border}`);
-            }
-
-            document.getElementById('modal-avatar').src = data.avatar_url || 'https://via.placeholder.com/150';
-            document.getElementById('modal-name').innerText = data.full_name || 'Tanpa Nama';
-            document.getElementById('modal-id').innerText = `#${data.user_id || '000000'}`;
-            document.getElementById('modal-level').innerText = data.level || 0;
-            document.getElementById('modal-exp').innerText = data.exp || 0;
-
-            const roleEl = document.getElementById('modal-role');
-            if (data.role === 'owner') {
-                roleEl.innerText = '👑 Owner';
-                roleEl.className = 'text-[11px] font-black uppercase tracking-widest text-gold-400';
-            } else if (data.role === 'breaker') {
-                roleEl.innerText = '🔥 Breaker';
-                roleEl.className = 'text-[11px] font-black uppercase tracking-widest text-blood-400';
-            } else if (data.role === 'nolep') {
-                roleEl.innerText = '🩸 Nolep';
-                roleEl.className = 'text-[12px] font-black uppercase tracking-widest text-rose-500';
-            } else {
-                roleEl.innerText = 'Member';
-                roleEl.className = 'text-[11px] font-black uppercase tracking-widest text-blue-400';
-            }
-
-            modal.classList.remove('hidden');
+            loadProfile();
         }
 
         // ===== LOGOUT =====
@@ -735,7 +361,6 @@
             window.location.href = 'auth.html';
         }
 
-        // Jalankan saat dokumen siap
         document.addEventListener('DOMContentLoaded', loadProfile);
     </script>
 </body>
