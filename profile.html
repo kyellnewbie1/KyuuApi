@@ -161,51 +161,80 @@
         let currentProfile = null;
 
         async function loadProfile() {
-            try {
-                if (typeof supabaseClient !== 'undefined') {
-                    supabase = supabaseClient;
-                } else {
-                    throw new Error("Supabase client tidak ditemukan di config.js");
-                }
-
-                const { data: { session }, error } = await supabase.auth.getSession();
-                
-                if (error || !session) {
-                    console.warn("Tidak ada session, mengalihkan ke auth...");
-                    window.location.href = 'auth.html';
-                    return;
-                }
-
-                currentUser = session.user;
-                const { data: profile, error: profileError } = await supabase
-                    .from('profiles')
-                    .select('*')
-                    .eq('id', currentUser.id)
-                    .single();
-
-                if (profileError) throw profileError;
-                
-                currentProfile = profile;
-                renderProfileData(currentProfile);
-
-            } catch (err) {
-                console.error("Gagal memuat profil, menggunakan data mock/tes UI:", err);
-                currentProfile = {
-                    id: 'mock-1234',
-                    full_name: 'Tester (Mode UI)',
-                    user_id: '99999',
-                    avatar_url: 'https://via.placeholder.com/150',
-                    api_key: 'kyuu_test_api_key_123',
-                    plan: 'premium',
-                    requests_today: 128,
-                    role: 'owner',
-                    created_at: new Date().toISOString(),
-                    banner_url: ''
-                };
-                currentUser = { id: currentProfile.id };
-                renderProfileData(currentProfile);
-            }
+    try {
+        // 1. Verifikasi Config
+        if (typeof supabaseClient === 'undefined') {
+            throw new Error("supabaseClient tidak terdeteksi. Pastikan script config.js berhasil di-load tanpa 404.");
         }
+        supabase = supabaseClient;
+
+        // 2. Cek Sesi Auth
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        
+        if (sessionError || !session) {
+            console.warn("Tidak ada sesi aktif, mengalihkan ke login...");
+            window.location.href = 'auth.html';
+            return;
+        }
+
+        currentUser = session.user;
+
+        // 3. Tarik Data Profil
+        let { data: profile, error: profileError } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', currentUser.id)
+            .single();
+
+        // 4. AUTO-FIX: Jika tabel kosong untuk user ini (PGRST116)
+        if (profileError && profileError.code === 'PGRST116') {
+            console.log("Profil belum ada. Mengeksekusi Auto-Create Profile...");
+            
+            const { data: newProfile, error: insertError } = await supabase
+                .from('profiles')
+                .insert([{
+                    id: currentUser.id,
+                    full_name: currentUser.user_metadata?.full_name || 'Member Baru',
+                    role: 'member',
+                    plan: 'free',
+                    requests_today: 0
+                }])
+                .select()
+                .single();
+                
+            if (insertError) throw insertError;
+            profile = newProfile; // Gunakan profil yang baru dibuat
+            
+        } else if (profileError) {
+            throw profileError; // Lempar error jika masalahnya bukan karena tabel kosong
+        }
+        
+        // 5. Render ke Layar
+        currentProfile = profile;
+        renderProfileData(currentProfile);
+
+    } catch (err) {
+        console.error("Gagal memuat profil:", err);
+        
+        // Memaksa UI berubah dari "Memuat..." agar Anda tahu ada yang salah
+        currentProfile = {
+            id: currentUser?.id || 'error-123',
+            full_name: 'Database Error',
+            user_id: '999',
+            avatar_url: 'https://via.placeholder.com/150',
+            api_key: 'Belum dibuat',
+            plan: 'free',
+            requests_today: 0,
+            role: 'member',
+            created_at: new Date().toISOString(),
+            banner_url: ''
+        };
+        renderProfileData(currentProfile);
+        
+        // Munculkan alert agar pesan error terbaca jelas
+        alert("Gagal memuat data dari database:\n" + err.message);
+    }
+}
 
         function renderProfileData(profile) {
             document.getElementById('profile-name').innerText = profile.full_name || 'Tanpa Nama';
