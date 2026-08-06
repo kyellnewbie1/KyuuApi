@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang - KyuuApi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        blood: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' },
+                        gold: { 50: '#fefce8', 100: '#fef9c3', 200: '#fef08a', 300: '#fde047', 400: '#facc15', 500: '#eab308', 600: '#ca8a04', 700: '#a16207', 800: '#854d0e', 900: '#713f12' },
+                        dark: { bg: '#0a0a0f', surface: '#14141e', card: '#1a1a2e' }
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <a href="home.html" class="text-xl font-black flex items-center gap-2">
+                <span class="text-blood-500">Kyuu</span>
+                <span class="text-gold-400">Api</span>
+            </a>
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="home.html" class="text-sm text-gray-400 hover:text-white transition font-medium">Home</a>
+                <a href="docs.html" class="text-sm text-gray-400 hover:text-gold-400 transition font-medium">Docs</a>
+                <a href="about.html" class="text-sm text-gold-400 font-bold border-b-2 border-gold-400/50 pb-0.5">About</a>
+                <a href="pricing.html" class="text-sm text-gray-400 hover:text-gold-400 transition font-medium">Pricing</a>
+                <button onclick="logout()" class="text-xs bg-blood-600/20 hover:bg-blood-600/40 text-blood-400 px-3 py-1.5 rounded-lg font-bold transition border border-blood-500/20">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="glass rounded-3xl p-6 sm:p-10">
+            <h1 class="text-3xl sm:text-4xl font-black text-white flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-circle-info text-gold-400"></i>
+                Tentang KyuuApi
+            </h1>
+
+            <div class="prose prose-invert max-w-none">
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    <strong class="text-gold-400">KyuuApi</strong> adalah platform <strong class="text-blood-400">REST API</strong> 
+                    yang menyediakan berbagai data menarik seputar <strong class="text-gold-400">anime, manga, dan konten pop culture</strong> 
+                    dengan performa tinggi dan mudah digunakan.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
+                    <div class="glass-light rounded-2xl p-5 border border-blood-500/10">
+                        <div class="text-3xl text-gold-400 mb-2">⚡</div>
+                        <h4 class="font-bold text-white">Cepat & Responsif</h4>
+                        <p class="text-sm text-gray-400">Endpoint dioptimalkan untuk response cepat</p>
+                    </div>
+                    <div class="glass-light rounded-2xl p-5 border border-blood-500/10">
+                        <div class="text-3xl text-blood-400 mb-2">🛡️</div>
+                        <h4 class="font-bold text-white">Aman</h4>
+                        <p class="text-sm text-gray-400">Autentikasi API Key untuk keamanan</p>
+                    </div>
+                    <div class="glass-light rounded-2xl p-5 border border-blood-500/10">
+                        <div class="text-3xl text-gold-400 mb-2">📦</div>
+                        <h4 class="font-bold text-white">Kaya Data</h4>
+                        <p class="text-sm text-gray-400">Puluhan endpoint dari berbagai kategori</p>
+                    </div>
+                    <div class="glass-light rounded-2xl p-5 border border-blood-500/10">
+                        <div class="text-3xl text-blood-400 mb-2">💎</div>
+                        <h4 class="font-bold text-white">Premium Plan</h4>
+                        <p class="text-sm text-gray-400">10.000 request/hari & custom API key</p>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-black text-gold-400 mt-8 mb-3">Apa itu REST API?</h2>
+                <p class="text-gray-300">
+                    <strong class="text-white">REST API</strong> (Representational State Transfer Application Programming Interface) 
+                    adalah standar arsitektur untuk membangun web service yang memungkinkan komunikasi antar aplikasi 
+                    melalui protokol HTTP. Dengan REST API, developer dapat mengakses data dan fungsionalitas dari 
+                    suatu platform secara terstruktur.
+                </p>
+
+                <h2 class="text-xl font-black text-gold-400 mt-8 mb-3">Mengapa KyuuApi?</h2>
+                <ul class="text-gray-300 space-y-2 list-disc pl-5">
+                    <li>✅ <strong class="text-white">Mudah digunakan</strong> — Dokumentasi lengkap & contoh kode</li>
+                    <li>✅ <strong class="text-white">Gratis untuk pemula</strong> — 100 request/hari dengan Free Plan</li>
+                    <li>✅ <strong class="text-white">Koleksi data unik</strong> — Anime, manga, quote, waifu, dan lainnya</li>
+                    <li>✅ <strong class="text-white">Support multi-bahasa</strong> — Contoh cURL, JS, Python, PHP</li>
+                    <li>✅ <strong class="text-white">Community driven</strong> — Terus berkembang dengan kontribusi</li>
+                </ul>
+
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="docs.html" class="btn-gold text-sm">
+                        <i class="fa-solid fa-book mr-2"></i> Lihat Dokumentasi
+                    </a>
+                    <a href="pricing.html" class="btn-outline-blood text-sm">
+                        <i class="fa-solid fa-crown mr-2"></i> Lihat Pricing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function logout() {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'auth.html';
+        }
+    </script>
+</body>
+</html>

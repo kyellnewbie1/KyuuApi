@@ -1,13 +1,13 @@
-/* KyuuApi - Dark Blood Red Glassmorphism Theme */
+/* ========================================
+   KYUUAPI - DARK BLOOD RED GLASSMORPHISM
+   + GOLD BLING / NEON GLOW
+   ======================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* ===== ROOT VARIABLES ===== */
 :root {
+    /* Blood Red */
     --blood-50: #fef2f2;
     --blood-100: #fee2e2;
     --blood-200: #fecaca;
@@ -18,6 +18,8 @@
     --blood-700: #b91c1c;
     --blood-800: #991b1b;
     --blood-900: #7f1d1d;
+    
+    /* Gold */
     --gold-50: #fefce8;
     --gold-100: #fef9c3;
     --gold-200: #fef08a;
@@ -28,12 +30,27 @@
     --gold-700: #a16207;
     --gold-800: #854d0e;
     --gold-900: #713f12;
+    
+    /* Dark */
     --dark-bg: #0a0a0f;
     --dark-surface: #14141e;
     --dark-card: #1a1a2e;
     --dark-border: rgba(220, 38, 38, 0.15);
+    
+    /* Glass */
     --glass-bg: rgba(26, 26, 46, 0.6);
     --glass-border: rgba(220, 38, 38, 0.12);
+}
+
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html.dark {
+    background-color: var(--dark-bg);
 }
 
 body {
@@ -41,9 +58,29 @@ body {
     color: #f1f5f9;
     font-family: 'Plus Jakarta Sans', sans-serif;
     min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background 0.5s ease;
 }
 
-/* Glassmorphism Base */
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--blood-600), var(--gold-500));
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--blood-500), var(--gold-400));
+}
+
+/* ===== GLASSMORPHISM ===== */
 .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -59,21 +96,40 @@ body {
     border: 1px solid rgba(220, 38, 38, 0.08);
 }
 
-/* Blood Glow Effects */
+.glass-nav {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.glass-panel {
+    background: rgba(19, 27, 46, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== GLOW EFFECTS ===== */
 .blood-glow {
     box-shadow: 0 0 30px rgba(220, 38, 38, 0.15), 0 0 60px rgba(220, 38, 38, 0.05);
 }
-
 .blood-glow-hover:hover {
     box-shadow: 0 0 40px rgba(220, 38, 38, 0.25), 0 0 80px rgba(220, 38, 38, 0.08);
 }
-
-/* Gold Glow */
 .gold-glow {
     box-shadow: 0 0 30px rgba(234, 179, 8, 0.15), 0 0 60px rgba(234, 179, 8, 0.05);
 }
+.blood-pulse {
+    animation: bloodPulse 2s ease-in-out infinite;
+}
+@keyframes bloodPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.1); }
+    50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.3), 0 0 80px rgba(220, 38, 38, 0.1); }
+}
 
-/* Text Gradients */
+/* ===== TEXT GRADIENTS ===== */
 .text-blood-gold {
     background: linear-gradient(135deg, #dc2626, #eab308, #dc2626);
     background-size: 200% 200%;
@@ -81,82 +137,124 @@ body {
     -webkit-text-fill-color: transparent;
     animation: shimmerBloodGold 3s ease-in-out infinite;
 }
-
 @keyframes shimmerBloodGold {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
 
-/* Gold Bling Animation */
-.gold-bling {
-    animation: goldBling 2s ease-in-out infinite;
-    text-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
-}
-
-@keyframes goldBling {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.4); }
-}
-
-/* Blood Pulse */
-.blood-pulse {
-    animation: bloodPulse 2s ease-in-out infinite;
-}
-
-@keyframes bloodPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.1); }
-    50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.3), 0 0 80px rgba(220, 38, 38, 0.1); }
-}
-
-/* Neon Glow Text */
+/* ===== NEON TEXT ===== */
 .neon-blood {
     text-shadow: 0 0 10px rgba(220, 38, 38, 0.5), 0 0 20px rgba(220, 38, 38, 0.3), 0 0 40px rgba(220, 38, 38, 0.1);
 }
-
 .neon-gold {
     text-shadow: 0 0 10px rgba(234, 179, 8, 0.4), 0 0 20px rgba(234, 179, 8, 0.2);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+/* ===== ROLE STYLES (dari profile.html) ===== */
+.role-owner {
+    background: linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgb-text 3s ease infinite;
+    font-weight: 900;
 }
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-}
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #dc2626, #eab308);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #ef4444, #facc15);
-}
-
-/* Navbar Glass */
-.nav-glass {
-    background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+@keyframes rgb-text {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Cards */
-.card-blood {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+.role-breaker {
+    background: linear-gradient(45deg, #a855f7, #ec4899, #6366f1, #06b6d4, #a855f7);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: nebula-glow 3s ease infinite;
+    font-weight: 900;
+    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+}
+@keyframes nebula-glow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.role-nolep {
+    background: linear-gradient(45deg, #ff0000, #1a0000, #8b0000, #000000, #ff0000);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: dark-blood 2s ease infinite;
+    font-weight: 900;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8)) drop-shadow(0 0 10px rgba(139, 0, 0, 0.6));
+}
+@keyframes dark-blood {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== AVATAR FRAMES (dari profile.html) ===== */
+.avatar-frame {
+    position: relative;
+    display: inline-block;
+    border-radius: 9999px;
+    padding: 4px;
     transition: all 0.3s ease;
 }
 
-.card-blood:hover {
-    border-color: rgba(220, 38, 38, 0.3);
-    box-shadow: 0 8px 40px rgba(220, 38, 38, 0.08);
+.frame-common {
+    background: linear-gradient(135deg, #9ca3af, #4b5563);
+    box-shadow: 0 0 10px rgba(156, 163, 175, 0.6);
+}
+.frame-rare {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4, #10b981);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.8);
+    animation: rare-glow 2s infinite alternate;
+}
+@keyframes rare-glow {
+    0% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.9); }
 }
 
-/* Button Styles */
+.frame-legendary {
+    background: linear-gradient(45deg, #f59e0b, #fef08a, #d97706, #fef08a);
+    background-size: 300% 300%;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.9), 0 0 10px rgba(254, 240, 138, 0.8);
+    animation: legendary-shine 2.5s infinite linear;
+}
+@keyframes legendary-shine {
+    0% { background-position: 0% 50%; box-shadow: 0 0 12px rgba(245, 158, 11, 0.8); }
+    50% { background-position: 100% 50%; box-shadow: 0 0 25px rgba(251, 191, 36, 1), 0 0 15px rgba(255, 255, 255, 0.8); }
+    100% { background-position: 0% 50%; box-shadow: 0 0 12px rgba(245, 158, 11, 0.8); }
+}
+
+.frame-mythic {
+    background: linear-gradient(270deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4, #ef4444, #ec4899);
+    background-size: 400% 400%;
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.9), 0 0 15px rgba(139, 92, 246, 0.8);
+    animation: mythic-aura 3s infinite linear;
+}
+@keyframes mythic-aura {
+    0% { background-position: 0% 50%; filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.8)); }
+    50% { background-position: 100% 50%; filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.9)); }
+    100% { background-position: 0% 50%; filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.8)); }
+}
+
+.frame-mythic-red {
+    background: linear-gradient(270deg, #ff0000, #7f1d1d, #ff4500, #dc2626, #ff0000);
+    background-size: 400% 400%;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 0 0 15px rgba(220, 38, 38, 0.8);
+    animation: mythic-blood-aura 2.5s infinite linear;
+}
+@keyframes mythic-blood-aura {
+    0% { background-position: 0% 50%; filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); }
+    50% { background-position: 100% 50%; filter: drop-shadow(0 0 25px rgba(255, 69, 0, 1)); }
+    100% { background-position: 0% 50%; filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); }
+}
+
+/* ===== BUTTONS ===== */
 .btn-blood {
     background: linear-gradient(135deg, #dc2626, #991b1b);
     color: white;
@@ -167,7 +265,6 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
 }
-
 .btn-blood:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
@@ -183,7 +280,6 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(234, 179, 8, 0.2);
 }
-
 .btn-gold:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(234, 179, 8, 0.3);
@@ -198,13 +294,26 @@ body {
     font-weight: 700;
     transition: all 0.3s ease;
 }
-
 .btn-outline-blood:hover {
     background: rgba(220, 38, 38, 0.1);
     box-shadow: 0 0 30px rgba(220, 38, 38, 0.1);
 }
 
-/* Input Styles */
+.btn-outline-gold {
+    background: transparent;
+    color: #eab308;
+    border: 1.5px solid #eab308;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+.btn-outline-gold:hover {
+    background: rgba(234, 179, 8, 0.1);
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.1);
+}
+
+/* ===== INPUTS ===== */
 .input-blood {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(220, 38, 38, 0.15);
@@ -214,18 +323,30 @@ body {
     transition: all 0.3s ease;
     width: 100%;
 }
-
 .input-blood:focus {
     outline: none;
     border-color: #dc2626;
     box-shadow: 0 0 20px rgba(220, 38, 38, 0.1);
 }
-
 .input-blood::placeholder {
     color: rgba(255, 255, 255, 0.2);
 }
 
-/* API Key Display */
+/* ===== CARDS ===== */
+.card-blood {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+.card-blood:hover {
+    border-color: rgba(220, 38, 38, 0.3);
+    box-shadow: 0 8px 40px rgba(220, 38, 38, 0.08);
+}
+
+/* ===== API KEY DISPLAY ===== */
 .api-key-display {
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(234, 179, 8, 0.2);
@@ -238,13 +359,42 @@ body {
     word-break: break-all;
 }
 
-/* Responsive */
+/* ===== EXP BAR RGB ===== */
+.rgb-exp-bar {
+    background: linear-gradient(90deg, #ff007f, #7928ca, #00dfd8, #0070f3, #10b981, #ff007f);
+    background-size: 300% 100%;
+    animation: rgb-flow 4s linear infinite;
+}
+@keyframes rgb-flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* ===== CUSTOM SCROLLBAR UTILITY ===== */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.4);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 58, 237, 0.7);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
     .card-blood {
         border-radius: 16px;
     }
-    .btn-blood, .btn-gold, .btn-outline-blood {
+    .btn-blood, .btn-gold, .btn-outline-blood, .btn-outline-gold {
         padding: 8px 16px;
         font-size: 13px;
+    }
+    .glass-panel {
+        border-radius: 20px;
     }
 }
