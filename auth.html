@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     
+    <!-- LOAD SUPABASE DULUAN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- CONFIG JS -->
     <script src="config.js"></script>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4" style="background: #0a0a0f;">
@@ -111,6 +114,7 @@
                                 id="login-email" 
                                 placeholder="email@example.com" 
                                 class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-white placeholder-gray-500 focus:outline-none focus:border-blood-500 focus:ring-2 focus:ring-blood-500/20 transition"
+                                value="kaishinaval@gmail.com"
                             >
                         </div>
                     </div>
@@ -238,7 +242,25 @@
 
             console.log('🔐 Auth page loaded');
 
-            const supabase = window.supabaseClient;
+            // ===== INISIALISASI SUPABASE DENGAN AMAN =====
+            let supabase = null;
+            
+            try {
+                // Cek apakah CONFIG tersedia
+                if (typeof CONFIG !== 'undefined' && CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY) {
+                    console.log('✅ Config found, initializing Supabase...');
+                    supabase = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+                    console.log('✅ Supabase initialized successfully');
+                } else {
+                    console.error('❌ CONFIG not found or incomplete!');
+                    alert('❌ Konfigurasi tidak ditemukan. Pastikan config.js sudah diatur dengan benar.');
+                    return;
+                }
+            } catch (err) {
+                console.error('❌ Failed to initialize Supabase:', err);
+                alert('❌ Gagal menginisialisasi Supabase: ' + err.message);
+                return;
+            }
 
             // ===== DOM ELEMENTS =====
             const loginForm = document.getElementById('login-form');
@@ -268,7 +290,6 @@
             }
 
             // ===== EVENT LISTENERS =====
-            // Tab clicks
             tabLogin.addEventListener('click', function(e) {
                 e.preventDefault();
                 switchTab('login');
@@ -299,6 +320,12 @@
 
                 if (!email || !password) {
                     alert('❌ Email dan password harus diisi!');
+                    return;
+                }
+
+                // Cek supabase tersedia
+                if (!supabase) {
+                    alert('❌ Supabase tidak tersedia. Silakan refresh halaman.');
                     return;
                 }
 
@@ -367,6 +394,12 @@
                     return;
                 }
 
+                // Cek supabase tersedia
+                if (!supabase) {
+                    alert('❌ Supabase tidak tersedia. Silakan refresh halaman.');
+                    return;
+                }
+
                 const originalText = btnRegister.innerHTML;
                 btnRegister.disabled = true;
                 btnRegister.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mendaftar...';
@@ -379,10 +412,6 @@
                         .select('user_id')
                         .eq('user_id', userId)
                         .maybeSingle();
-
-                    if (checkError) {
-                        console.error('❌ Check username error:', checkError);
-                    }
 
                     if (existing) {
                         alert('❌ Username "' + userId + '" sudah digunakan! Silakan pilih username lain.');
@@ -447,6 +476,11 @@
             // ===== CEK SESSION =====
             async function checkSession() {
                 try {
+                    if (!supabase) {
+                        console.error('❌ Supabase not available for session check');
+                        return;
+                    }
+                    
                     console.log('🔍 Checking session...');
                     const { data: { session }, error } = await supabase.auth.getSession();
                     
@@ -467,7 +501,11 @@
             }
 
             // ===== INIT =====
-            checkSession();
+            // Tunggu sebentar biar semua script loading
+            setTimeout(function() {
+                checkSession();
+            }, 500);
+            
             console.log('✅ Auth page ready');
 
         })();
